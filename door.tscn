@@ -11,11 +11,6 @@ position = Vector2(384, 696)
 
 [node name="Area2D" type="Area2D" parent="." groups=["doors"]]
 script = ExtResource("1_kdlyx")
-DoorNote = null
-DoorCheck = null
-DoorNumber = null
-DoorEntered = null
-DoorExited = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["doors"]]
 position = Vector2(68, -250)

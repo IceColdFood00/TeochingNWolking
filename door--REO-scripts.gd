@@ -12,4 +12,4 @@ class_name theDoors
 func _on_body_entered(body):
 	if (body == "PloyerP1"):# Replace with function body.
 		if Input.is_action_just_pressed("my_do"):
-			$PloyerP1.position = 	
+			pass 	

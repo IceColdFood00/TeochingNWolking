@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d1rqarur54jku"]
+[gd_scene load_steps=31 format=3 uid="uid://d1rqarur54jku"]
 
 [ext_resource type="Shader" path="res://kt1.gdshader" id="1_23jni"]
 [ext_resource type="Shader" path="res://control-texture.gdshader" id="1_gtt5m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://ccnewone.gd" id="5_hkx2k"]
 [ext_resource type="Texture2D" uid="uid://cd6tomobdpiu1" path="res://proj-gome-grophics/sticky-substitue1.png" id="5_kdbqi"]
 [ext_resource type="AudioStream" uid="uid://clc28dcuf8vcf" path="res://sooounds/jump.wav" id="6_itak0"]
+[ext_resource type="Texture2D" uid="uid://dphd0uvxg5cxn" path="res://proj-gome-grophics/whhhhhyyyy.png" id="7_akiax"]
 [ext_resource type="AudioStream" uid="uid://d0ou7pry56pdr" path="res://sooounds/jump2.wav" id="7_v65c0"]
 [ext_resource type="PackedScene" uid="uid://d31licxnkquhk" path="res://door.tscn" id="8_wivdr"]
 [ext_resource type="Texture2D" uid="uid://b0yb4qeo6oxk3" path="res://proj-gome-grophics/door.png" id="13_uvnoc"]
@@ -21,6 +22,9 @@ shader = ExtResource("1_gtt5m")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yulin"]
 shader = ExtResource("1_23jni")
 shader_parameter/count = 1.0
+shader_parameter/begpoint = 0.0
+shader_parameter/center = Vector2(0.5, 0)
+shader_parameter/force = 2.0
 
 [sub_resource type="Theme" id="Theme_we4ky"]
 
@@ -169,7 +173,6 @@ offset_right = 1600.0
 offset_bottom = 900.0
 theme = SubResource("Theme_we4ky")
 texture = ExtResource("2_50mt3")
-expand_mode = 2
 
 [node name="lemon" parent="." instance=ExtResource("5_gi8we")]
 layout_mode = 0
@@ -271,16 +274,21 @@ text = "[color=white] [font_size=64] We Got Secrets for everybody in here! [/fon
 [node name="WhyudoSubViewportContainer" type="SubViewportContainer" parent="lemon"]
 clip_contents = true
 layout_mode = 0
-offset_left = 474.0
+offset_left = 649.0
 offset_top = 97.0
-offset_right = 874.0
+offset_right = 1049.0
 offset_bottom = 497.0
 
 [node name="SubViewport" type="SubViewport" parent="lemon/WhyudoSubViewportContainer"]
 world_3d = SubResource("World3D_ce6nh")
+handle_input_locally = false
 size = Vector2i(400, 400)
+size_2d_override_stretch = true
+render_target_clear_mode = 1
+render_target_update_mode = 4
 
 [node name="greot-pic" type="Sprite2D" parent="lemon/WhyudoSubViewportContainer/SubViewport"]
+texture = ExtResource("7_akiax")
 
 [node name="whockystuff" type="RichTextLabel" parent="." groups=["Notices"]]
 layout_mode = 1
@@ -372,6 +380,13 @@ shape = SubResource("RectangleShape2D_h7c0m")
 visibility_layer = 2
 position = Vector2(242, 746)
 scale = Vector2(0.4, 0.4)
+
+[node name="Area2D" parent="Door" index="0"]
+DoorNote = ""
+DoorCheck = false
+DoorNumber = 0
+DoorEntered = false
+DoorExited = false
 
 [node name="SpwnPoint1" parent="Door/Area2D" index="1"]
 position = Vector2(575, 40)

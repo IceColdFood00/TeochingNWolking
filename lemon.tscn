@@ -7,6 +7,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yulin"]
 shader = ExtResource("1_ttb2j")
+shader_parameter/count = 2.0
+shader_parameter/begpoint = 0.0
+shader_parameter/center = null
+shader_parameter/force = null
 
 [sub_resource type="Theme" id="Theme_we4ky"]
 
