@@ -1,0 +1,401 @@
+[gd_scene load_steps=30 format=3 uid="uid://d1rqarur54jku"]
+
+[ext_resource type="Shader" path="res://kt1.gdshader" id="1_23jni"]
+[ext_resource type="Shader" path="res://control-texture.gdshader" id="1_gtt5m"]
+[ext_resource type="Texture2D" uid="uid://ifgpgq5f73ba" path="res://proj-gome-grophics/sherbert.png" id="2_50mt3"]
+[ext_resource type="Script" path="res://kt-script-know.gd" id="2_oft07"]
+[ext_resource type="Texture2D" uid="uid://xbnwcc1ru5r3" path="res://proj-gome-grophics/spoce-flover.png" id="5_d4bf2"]
+[ext_resource type="PackedScene" uid="uid://c8y4yxgvujl2n" path="res://lemon.tscn" id="5_gi8we"]
+[ext_resource type="Script" path="res://ccnewone.gd" id="5_hkx2k"]
+[ext_resource type="Texture2D" uid="uid://cd6tomobdpiu1" path="res://proj-gome-grophics/sticky-substitue1.png" id="5_kdbqi"]
+[ext_resource type="AudioStream" uid="uid://clc28dcuf8vcf" path="res://sooounds/jump.wav" id="6_itak0"]
+[ext_resource type="AudioStream" uid="uid://d0ou7pry56pdr" path="res://sooounds/jump2.wav" id="7_v65c0"]
+[ext_resource type="PackedScene" uid="uid://d31licxnkquhk" path="res://door.tscn" id="8_wivdr"]
+[ext_resource type="Texture2D" uid="uid://b0yb4qeo6oxk3" path="res://proj-gome-grophics/door.png" id="13_uvnoc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m51t6"]
+shader = ExtResource("1_gtt5m")
+
+[sub_resource type="Theme" id="Theme_aopbm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yulin"]
+shader = ExtResource("1_23jni")
+shader_parameter/count = 1.0
+
+[sub_resource type="Theme" id="Theme_we4ky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv1j1"]
+size = Vector2(1270, 1450)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_dcppb"]
+
+[sub_resource type="World3D" id="World3D_ce6nh"]
+camera_attributes = SubResource("CameraAttributesPractical_dcppb")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eaok4"]
+radius = 83.14
+
+[sub_resource type="Animation" id="Animation_bbw0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shodow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(782, 832)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shodow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.05, 0.05)]
+}
+
+[sub_resource type="Animation" id="Animation_baxti"]
+resource_name = "idle1"
+length = 30.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 30, 60, 90, 120),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(782, 832), Vector2(782, 827), Vector2(780, 827), Vector2(782, 822), Vector2(782, 832)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shodow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -21)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shodow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(30, 60, 90),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.05, 0.04), Vector2(0.05, 0.04), Vector2(0.05, 0.05)]
+}
+
+[sub_resource type="Animation" id="Animation_pgp7a"]
+resource_name = "idle2"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bw3cr"]
+_data = {
+"RESET": SubResource("Animation_bbw0k"),
+"idle1": SubResource("Animation_baxti"),
+"idle2": SubResource("Animation_pgp7a")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rryja"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("6_itak0")
+stream_0/weight = 2.0
+stream_1/stream = ExtResource("7_v65c0")
+stream_1/weight = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qi075"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70a57"]
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7c0m"]
+size = Vector2(72, 894)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uagdt"]
+size = Vector2(580, 860)
+
+[node name="Sherbert" type="Control"]
+material = SubResource("ShaderMaterial_m51t6")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 288.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+tooltip_text = "No seeing me!"
+theme = SubResource("Theme_aopbm")
+script = ExtResource("2_oft07")
+
+[node name="sherbert_" type="TextureRect" parent="." groups=["bgrs"]]
+material = SubResource("ShaderMaterial_yulin")
+use_parent_material = true
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+theme = SubResource("Theme_we4ky")
+texture = ExtResource("2_50mt3")
+expand_mode = 2
+
+[node name="lemon" parent="." instance=ExtResource("5_gi8we")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 1541.0
+offset_bottom = 1721.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="lemon" parent="lemon" index="1"]
+offset_top = 0.0
+offset_bottom = 900.0
+
+[node name="buddies" parent="lemon" index="3"]
+position = Vector2(0, -16)
+
+[node name="Spownpoint2" type="Marker2D" parent="lemon"]
+position = Vector2(665, 773)
+
+[node name="FokeDoor" type="Sprite2D" parent="lemon"]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(498, 657)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_uvnoc")
+
+[node name="Area2D" type="Area2D" parent="lemon/FokeDoor"]
+position = Vector2(-10, 10)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lemon/FokeDoor/Area2D"]
+shape = SubResource("RectangleShape2D_rv1j1")
+debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
+
+[node name="FokeDoor2" type="Sprite2D" parent="lemon"]
+self_modulate = Color(0, 0.85098, 0, 0.976471)
+position = Vector2(1189, 664)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_uvnoc")
+
+[node name="Area2D" type="Area2D" parent="lemon/FokeDoor2"]
+position = Vector2(-10, 10)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lemon/FokeDoor2/Area2D"]
+shape = SubResource("RectangleShape2D_rv1j1")
+debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
+
+[node name="NeoP" type="Control" parent="lemon"]
+anchors_preset = 0
+offset_left = 2455.0
+offset_top = -912.0
+offset_right = 4375.0
+offset_bottom = 168.0
+
+[node name="Neopolotin_" type="TextureRect" parent="lemon/NeoP" groups=["bgrs"]]
+modulate = Color(0.219608, 0, 1, 1)
+material = SubResource("ShaderMaterial_yulin")
+use_parent_material = true
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+theme = SubResource("Theme_we4ky")
+texture = ExtResource("2_50mt3")
+expand_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="lemon/NeoP/Neopolotin_"]
+position = Vector2(13, 871)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lemon/NeoP/Neopolotin_/StaticBody2D"]
+self_modulate = Color(0.0705882, 0.0705882, 0.0705882, 1)
+position = Vector2(0, -24)
+polygon = PackedVector2Array(14, -27, 1575, -36, 1584, 47, -14, 52, -17, -34)
+
+[node name="Polygon2D" type="Polygon2D" parent="lemon/NeoP/Neopolotin_/StaticBody2D/CollisionPolygon2D"]
+
+[node name="FokeDoor3" type="Sprite2D" parent="lemon/NeoP"]
+modulate = Color(0.54902, 1, 0, 1)
+position = Vector2(283, 664)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_uvnoc")
+
+[node name="Area2D" type="Area2D" parent="lemon/NeoP/FokeDoor3"]
+position = Vector2(-10, 10)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lemon/NeoP/FokeDoor3/Area2D"]
+shape = SubResource("RectangleShape2D_rv1j1")
+debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
+
+[node name="Secrets" type="RichTextLabel" parent="lemon/NeoP"]
+layout_mode = 0
+offset_right = 1583.0
+offset_bottom = 264.0
+bbcode_enabled = true
+text = "[color=white] [font_size=64] We Got Secrets for everybody in here! [/font_size=64] [/color]"
+
+[node name="WhyudoSubViewportContainer" type="SubViewportContainer" parent="lemon"]
+clip_contents = true
+layout_mode = 0
+offset_left = 474.0
+offset_top = 97.0
+offset_right = 874.0
+offset_bottom = 497.0
+
+[node name="SubViewport" type="SubViewport" parent="lemon/WhyudoSubViewportContainer"]
+world_3d = SubResource("World3D_ce6nh")
+size = Vector2i(400, 400)
+
+[node name="greot-pic" type="Sprite2D" parent="lemon/WhyudoSubViewportContainer/SubViewport"]
+
+[node name="whockystuff" type="RichTextLabel" parent="." groups=["Notices"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.362847
+anchor_top = 0.282986
+anchor_right = 0.362847
+anchor_bottom = 0.282986
+offset_left = -328.0
+offset_top = -328.0
+offset_right = 1112.0
+offset_bottom = 572.0
+bbcode_enabled = true
+text = "[wave amp = 25 freq=9] [color=red] [font family=roboto] [font size=64]We doing big brain stuff here. "
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="PloyerP1" type="CharacterBody2D" parent="." groups=["PloyerP1"]]
+z_index = 1
+position = Vector2(782, 832)
+input_pickable = true
+script = ExtResource("5_hkx2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PloyerP1"]
+position = Vector2(-57, -13)
+shape = SubResource("CircleShape2D_eaok4")
+
+[node name="CBMarker2D" type="Marker2D" parent="PloyerP1"]
+position = Vector2(-2, 4)
+gizmo_extents = 50.0
+
+[node name="shodow" type="Sprite2D" parent="PloyerP1"]
+texture_filter = 1
+position = Vector2(0, -21)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_kdbqi")
+
+[node name="RedPloyer" type="AnimationPlayer" parent="PloyerP1"]
+libraries = {
+"": SubResource("AnimationLibrary_bw3cr")
+}
+
+[node name="sounds" type="AudioStreamPlayer" parent="PloyerP1"]
+stream = SubResource("AudioStreamRandomizer_rryja")
+
+[node name="Ni_Tree" type="AnimationTree" parent="PloyerP1"]
+tree_root = SubResource("AnimationNodeStateMachine_qi075")
+
+[node name="spoce-yummy" type="TextureRect" parent="." groups=["bgrs"]]
+z_index = -1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_d4bf2")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="flooryeh" type="StaticBody2D" parent="." groups=["bgrs"]]
+position = Vector2(-6, 842)
+physics_material_override = SubResource("PhysicsMaterial_70a57")
+
+[node name="CollisionPolygonfloor" type="CollisionPolygon2D" parent="flooryeh"]
+polygon = PackedVector2Array(-28, -18, 1595, -15, 1593, 83, -18, 94)
+
+[node name="Polygon2D" type="Polygon2D" parent="flooryeh"]
+color = Color(0.270588, 0, 1, 1)
+polygon = PackedVector2Array(-2, -10, -6, 92, 1597, 78, 1591, -4)
+
+[node name="leftwol" type="StaticBody2D" parent="." groups=["bgrs"]]
+
+[node name="CollisionPolygonlw" type="CollisionPolygon2D" parent="leftwol"]
+position = Vector2(0, 751)
+polygon = PackedVector2Array(51, 57, 35, -763, -13, -771, -21, 65)
+
+[node name="rightWol" type="StaticBody2D" parent="." groups=["bgrs"]]
+position = Vector2(1808, 16)
+
+[node name="CollisionPolygonrw" type="CollisionPolygon2D" parent="rightWol"]
+position = Vector2(0, 751)
+polygon = PackedVector2Array(51, 57, 35, -763, -13, -771, -21, 65)
+
+[node name="Area2D" type="Area2D" parent="rightWol/CollisionPolygonrw"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rightWol/CollisionPolygonrw/Area2D"]
+position = Vector2(15, -302)
+shape = SubResource("RectangleShape2D_h7c0m")
+
+[node name="Door" parent="." instance=ExtResource("8_wivdr")]
+visibility_layer = 2
+position = Vector2(242, 746)
+scale = Vector2(0.4, 0.4)
+
+[node name="SpwnPoint1" parent="Door/Area2D" index="1"]
+position = Vector2(575, 40)
+
+[node name="Door2" type="Node2D" parent="." groups=["doors"]]
+visibility_layer = 2
+position = Vector2(1193, 748)
+scale = Vector2(0.4, 0.4)
+
+[node name="Area2D" type="Area2D" parent="Door2" groups=["doors"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2/Area2D" groups=["doors"]]
+position = Vector2(68, -250)
+shape = SubResource("RectangleShape2D_uagdt")
+
+[node name="mypic" type="Sprite2D" parent="Door2/Area2D/CollisionShape2D" groups=["doors"]]
+visibility_layer = 3
+position = Vector2(17, 3)
+scale = Vector2(0.523437, 0.618056)
+texture = ExtResource("13_uvnoc")
+
+[node name="SpwnPoint" type="Marker2D" parent="Door2/Area2D"]
+
+[connection signal="area_entered" from="lemon/buddies/Area2D" to="PloyerP1" method="_on_area_2d_area_entered"]
+
+[editable path="lemon"]
+[editable path="Door"]

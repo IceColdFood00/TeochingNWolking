@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8y4yxgvujl2n"]
+
+[ext_resource type="Shader" path="res://kt1.gdshader" id="1_ttb2j"]
+[ext_resource type="Texture2D" uid="uid://ifgpgq5f73ba" path="res://proj-gome-grophics/sherbert.png" id="2_savwi"]
+[ext_resource type="Texture2D" uid="uid://bxa561evf2ahq" path="res://proj-gome-grophics/1080-fun.png" id="3_iwkiq"]
+[ext_resource type="Texture2D" uid="uid://cmqxgg7il0vgo" path="res://proj-gome-grophics/chors/Bud_Down0.png" id="4_ibsqa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yulin"]
+shader = ExtResource("1_ttb2j")
+
+[sub_resource type="Theme" id="Theme_we4ky"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70a57"]
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vi8e1"]
+size = Vector2(73, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7twfb"]
+size = Vector2(108, 101)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+clip_contents = false
+layout_mode = 0
+offset_left = 465.0
+offset_top = -4.0
+offset_right = 1905.0
+offset_bottom = 896.0
+bbcode_enabled = true
+text = "[color=blue] [font_size=64]
+[b][i]Here, We just be tolkin'[/i]. [/b][/font_size][/color]"
+
+[node name="lemon" type="TextureRect" parent="." groups=["bgrs"]]
+modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_yulin")
+use_parent_material = true
+layout_mode = 0
+offset_top = 13.0
+offset_right = 1600.0
+offset_bottom = 913.0
+theme = SubResource("Theme_we4ky")
+texture = ExtResource("2_savwi")
+
+[node name="flooryeh2" type="StaticBody2D" parent="lemon" groups=["bgrs"]]
+position = Vector2(10, 814)
+physics_material_override = SubResource("PhysicsMaterial_70a57")
+
+[node name="CollisionPolygonfloor" type="CollisionPolygon2D" parent="lemon/flooryeh2"]
+polygon = PackedVector2Array(-28, -18, 1595, -15, 1593, 83, -18, 94)
+
+[node name="Polygon2D" type="Polygon2D" parent="lemon/flooryeh2"]
+color = Color(0.270588, 0, 1, 1)
+polygon = PackedVector2Array(-2, -10, -6, 92, 1597, 78, 1591, -4)
+
+[node name="leftwol2" type="StaticBody2D" parent="lemon" groups=["bgrs"]]
+position = Vector2(12, -9)
+
+[node name="CollisionPolygonlw" type="CollisionPolygon2D" parent="lemon/leftwol2"]
+position = Vector2(0, 751)
+polygon = PackedVector2Array(51, 57, 35, -763, -13, -771, -21, 65)
+
+[node name="Northside_Times" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_top = 13.0
+offset_right = 1920.0
+offset_bottom = 1093.0
+texture = ExtResource("3_iwkiq")
+
+[node name="buddies" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buddies"]
+position = Vector2(188.5, 762.5)
+shape = SubResource("RectangleShape2D_vi8e1")
+
+[node name="budtexture" type="Sprite2D" parent="buddies/CollisionShape2D"]
+position = Vector2(1.5, 17.5)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ibsqa")
+
+[node name="Area2D" type="Area2D" parent="buddies"]
+position = Vector2(190, 769)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buddies/Area2D"]
+position = Vector2(-1, -10.5)
+shape = SubResource("RectangleShape2D_7twfb")
+debug_color = Color(1, 1, 0, 0.419608)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d31licxnkquhk"]
+
+[ext_resource type="Texture2D" uid="uid://b0yb4qeo6oxk3" path="res://proj-gome-grophics/door.png" id="1_4e0yv"]
+[ext_resource type="Script" path="res://door--REO-scripts.gd" id="1_kdlyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uagdt"]
+size = Vector2(580, 860)
+
+[node name="Door" type="Node2D" groups=["doors"]]
+position = Vector2(384, 696)
+
+[node name="Area2D" type="Area2D" parent="." groups=["doors"]]
+script = ExtResource("1_kdlyx")
+DoorNote = null
+DoorCheck = null
+DoorNumber = null
+DoorEntered = null
+DoorExited = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["doors"]]
+position = Vector2(68, -250)
+shape = SubResource("RectangleShape2D_uagdt")
+
+[node name="mypic" type="Sprite2D" parent="Area2D/CollisionShape2D" groups=["doors"]]
+modulate = Color(0.160784, 1, 0.0431373, 1)
+visibility_layer = 3
+position = Vector2(17, 3)
+scale = Vector2(0.523437, 0.618056)
+texture = ExtResource("1_4e0yv")
+
+[node name="SpwnPoint1" type="Marker2D" parent="Area2D"]
