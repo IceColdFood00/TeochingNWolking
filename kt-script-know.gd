@@ -1,4 +1,6 @@
 extends Control
+#If you get crashing errors that clear scripts and or get roadblocks 
+#keep Culm & puste again 
 
 
 # Called when the node enters the scene tree for the first time.

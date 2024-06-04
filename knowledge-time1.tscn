@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d1rqarur54jku"]
+[gd_scene load_steps=34 format=3 uid="uid://b6e546wddw4p"]
 
 [ext_resource type="Shader" path="res://kt1.gdshader" id="1_23jni"]
 [ext_resource type="Shader" path="res://control-texture.gdshader" id="1_gtt5m"]
@@ -13,18 +13,17 @@
 [ext_resource type="AudioStream" uid="uid://d0ou7pry56pdr" path="res://sooounds/jump2.wav" id="7_v65c0"]
 [ext_resource type="PackedScene" uid="uid://d31licxnkquhk" path="res://door.tscn" id="8_wivdr"]
 [ext_resource type="Texture2D" uid="uid://b0yb4qeo6oxk3" path="res://proj-gome-grophics/door.png" id="13_uvnoc"]
+[ext_resource type="Texture2D" uid="uid://dprkodqll3ker" path="res://proj-gome-grophics/bench.png" id="14_iup7l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m51t6"]
+render_priority = 0
 shader = ExtResource("1_gtt5m")
 
 [sub_resource type="Theme" id="Theme_aopbm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yulin"]
+render_priority = 0
 shader = ExtResource("1_23jni")
-shader_parameter/count = 1.0
-shader_parameter/begpoint = 0.0
-shader_parameter/center = Vector2(0.5, 0)
-shader_parameter/force = 2.0
 
 [sub_resource type="Theme" id="Theme_we4ky"]
 
@@ -122,11 +121,28 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_pgp7a"]
 resource_name = "idle2"
 
+[sub_resource type="Animation" id="Animation_anw5p"]
+resource_name = "run"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shodow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 15.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -21), Vector2(0, -21)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bw3cr"]
 _data = {
 "RESET": SubResource("Animation_bbw0k"),
 "idle1": SubResource("Animation_baxti"),
-"idle2": SubResource("Animation_pgp7a")
+"idle2": SubResource("Animation_pgp7a"),
+"run": SubResource("Animation_anw5p")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rryja"]
@@ -148,6 +164,9 @@ size = Vector2(72, 894)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uagdt"]
 size = Vector2(580, 860)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak82b"]
+size = Vector2(20.19, 20)
+
 [node name="Sherbert" type="Control"]
 material = SubResource("ShaderMaterial_m51t6")
 layout_mode = 3
@@ -161,7 +180,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-tooltip_text = "No seeing me!"
+tooltip_text = "No seeing me! 
+It’s meant to be removed when, 
+I’m done, stuck to root control
+Keep plugging away to it dude"
 theme = SubResource("Theme_aopbm")
 script = ExtResource("2_oft07")
 
@@ -188,11 +210,19 @@ grow_vertical = 1
 offset_top = 0.0
 offset_bottom = 900.0
 
+[node name="flooryeh2" parent="lemon/lemon" index="0"]
+scale = Vector2(1.15347, 0.840949)
+
+[node name="CollisionPolygonfloor" parent="lemon/lemon/flooryeh2" index="0"]
+position = Vector2(-7.11942, -8.98122)
+scale = Vector2(0.986173, 1.07039)
+polygon = PackedVector2Array(-28, -18, 1559.71, -3.82959, 1556.2, 75.0471, -18, 94)
+
+[node name="Polygon2D" parent="lemon/lemon/flooryeh2" index="1"]
+polygon = PackedVector2Array(-2, -10, -6, 92, 1523.23, 77.2937, 1519.76, -13.0803)
+
 [node name="buddies" parent="lemon" index="3"]
 position = Vector2(0, -16)
-
-[node name="Spownpoint2" type="Marker2D" parent="lemon"]
-position = Vector2(665, 773)
 
 [node name="FokeDoor" type="Sprite2D" parent="lemon"]
 modulate = Color(1, 1, 0, 1)
@@ -208,6 +238,10 @@ scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_rv1j1")
 debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
 
+[node name="spLem1" type="Marker2D" parent="lemon/FokeDoor/Area2D"]
+position = Vector2(845.001, 490)
+scale = Vector2(5.00001, 5.00001)
+
 [node name="FokeDoor2" type="Sprite2D" parent="lemon"]
 self_modulate = Color(0, 0.85098, 0, 0.976471)
 position = Vector2(1189, 664)
@@ -222,54 +256,9 @@ scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_rv1j1")
 debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
 
-[node name="NeoP" type="Control" parent="lemon"]
-anchors_preset = 0
-offset_left = 2455.0
-offset_top = -912.0
-offset_right = 4375.0
-offset_bottom = 168.0
-
-[node name="Neopolotin_" type="TextureRect" parent="lemon/NeoP" groups=["bgrs"]]
-modulate = Color(0.219608, 0, 1, 1)
-material = SubResource("ShaderMaterial_yulin")
-use_parent_material = true
-layout_mode = 0
-offset_right = 1600.0
-offset_bottom = 900.0
-theme = SubResource("Theme_we4ky")
-texture = ExtResource("2_50mt3")
-expand_mode = 2
-
-[node name="StaticBody2D" type="StaticBody2D" parent="lemon/NeoP/Neopolotin_"]
-position = Vector2(13, 871)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lemon/NeoP/Neopolotin_/StaticBody2D"]
-self_modulate = Color(0.0705882, 0.0705882, 0.0705882, 1)
-position = Vector2(0, -24)
-polygon = PackedVector2Array(14, -27, 1575, -36, 1584, 47, -14, 52, -17, -34)
-
-[node name="Polygon2D" type="Polygon2D" parent="lemon/NeoP/Neopolotin_/StaticBody2D/CollisionPolygon2D"]
-
-[node name="FokeDoor3" type="Sprite2D" parent="lemon/NeoP"]
-modulate = Color(0.54902, 1, 0, 1)
-position = Vector2(283, 664)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_uvnoc")
-
-[node name="Area2D" type="Area2D" parent="lemon/NeoP/FokeDoor3"]
-position = Vector2(-10, 10)
-scale = Vector2(0.999999, 0.999999)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lemon/NeoP/FokeDoor3/Area2D"]
-shape = SubResource("RectangleShape2D_rv1j1")
-debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
-
-[node name="Secrets" type="RichTextLabel" parent="lemon/NeoP"]
-layout_mode = 0
-offset_right = 1583.0
-offset_bottom = 264.0
-bbcode_enabled = true
-text = "[color=white] [font_size=64] We Got Secrets for everybody in here! [/font_size=64] [/color]"
+[node name="spLem2" type="Marker2D" parent="lemon/FokeDoor2"]
+position = Vector2(-2620, 465)
+scale = Vector2(5, 5)
 
 [node name="WhyudoSubViewportContainer" type="SubViewportContainer" parent="lemon"]
 clip_contents = true
@@ -293,10 +282,10 @@ texture = ExtResource("7_akiax")
 [node name="whockystuff" type="RichTextLabel" parent="." groups=["Notices"]]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.362847
-anchor_top = 0.282986
-anchor_right = 0.362847
-anchor_bottom = 0.282986
+anchor_left = 0.3625
+anchor_top = 0.352222
+anchor_right = 0.3625
+anchor_bottom = 0.352222
 offset_left = -328.0
 offset_top = -328.0
 offset_right = 1112.0
@@ -381,13 +370,6 @@ visibility_layer = 2
 position = Vector2(242, 746)
 scale = Vector2(0.4, 0.4)
 
-[node name="Area2D" parent="Door" index="0"]
-DoorNote = ""
-DoorCheck = false
-DoorNumber = 0
-DoorEntered = false
-DoorExited = false
-
 [node name="SpwnPoint1" parent="Door/Area2D" index="1"]
 position = Vector2(575, 40)
 
@@ -409,6 +391,66 @@ scale = Vector2(0.523437, 0.618056)
 texture = ExtResource("13_uvnoc")
 
 [node name="SpwnPoint" type="Marker2D" parent="Door2/Area2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1657, 2274)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ak82b")
+
+[node name="Bench" type="Sprite2D" parent="Area2D/CollisionShape2D"]
+position = Vector2(1688, 2285)
+scale = Vector2(3, 3)
+texture = ExtResource("14_iup7l")
+
+[node name="NeoP" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 2455.0
+offset_top = 629.0
+offset_right = 4375.0
+offset_bottom = 1709.0
+
+[node name="Neopolotin_" type="TextureRect" parent="NeoP" groups=["bgrs"]]
+modulate = Color(0.219608, 0, 1, 1)
+material = SubResource("ShaderMaterial_yulin")
+use_parent_material = true
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+theme = SubResource("Theme_we4ky")
+texture = ExtResource("2_50mt3")
+expand_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NeoP/Neopolotin_"]
+position = Vector2(13, 871)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NeoP/Neopolotin_/StaticBody2D"]
+self_modulate = Color(0.0705882, 0.0705882, 0.0705882, 1)
+position = Vector2(0, -24)
+polygon = PackedVector2Array(14, -27, 1575, -36, 1584, 47, -14, 52, -17, -34)
+
+[node name="Polygon2D" type="Polygon2D" parent="NeoP/Neopolotin_/StaticBody2D/CollisionPolygon2D"]
+
+[node name="FokeDoor3" type="Sprite2D" parent="NeoP"]
+modulate = Color(0.54902, 1, 0, 1)
+position = Vector2(283, 664)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_uvnoc")
+
+[node name="Area2D" type="Area2D" parent="NeoP/FokeDoor3"]
+position = Vector2(-10, 10)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeoP/FokeDoor3/Area2D"]
+shape = SubResource("RectangleShape2D_rv1j1")
+debug_color = Color(0.717647, 0.270588, 0.407843, 0.419608)
+
+[node name="Secrets" type="RichTextLabel" parent="NeoP"]
+layout_mode = 0
+offset_right = 1583.0
+offset_bottom = 264.0
+bbcode_enabled = true
+text = "[color=white] [font_size=64] We Got Secrets for everybody in here!"
 
 [connection signal="area_entered" from="lemon/buddies/Area2D" to="PloyerP1" method="_on_area_2d_area_entered"]
 
